@@ -1,0 +1,8 @@
+# API Keys - 敏感信息，禁止提交
+docs/API_KEYS.md
+
+# 环境变量
+.env
+.env.local
+.env.*.local
+*.env

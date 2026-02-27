@@ -35,6 +35,7 @@ class AgentConfig(BaseModel):
     # Metadata
     id: Optional[str] = Field(default=None, description="Config ID")
     is_default: bool = Field(default=False, description="Is default config")
+    metadata: Dict[str, Any] = Field(default_factory=dict, description="Additional metadata")
 
 
 class AgentState(BaseModel):

@@ -27,10 +27,17 @@ class Settings(BaseSettings):
 
     # Security
     secret_key: str = Field(default="change-me-in-production", alias="OAGENT_SECRET")
-    api_keys: List[str] = Field(
-        default_factory=list,
+    api_keys: Optional[str] = Field(
+        default=None,
         alias="OAGENT_API_KEYS"
     )
+
+    @property
+    def api_keys_list(self) -> List[str]:
+        """Get API keys as a list."""
+        if not self.api_keys:
+            return []
+        return [key.strip() for key in self.api_keys.split(',')]
 
     # LLM Providers
     # DashScope (阿里百炼) - 默认使用
@@ -94,9 +101,10 @@ class Settings(BaseSettings):
 
     def is_api_key_valid(self, key: str) -> bool:
         """Check if the provided API key is valid."""
-        if not self.api_keys:
+        valid_keys = self.api_keys_list
+        if not valid_keys:
             return True  # No API keys configured, allow all
-        return key in self.api_keys
+        return key in valid_keys
 
 
 # Global settings instance

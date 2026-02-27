@@ -12,7 +12,7 @@ interface Document {
 }
 
 export default function Knowledge() {
-  const [documents, setDocuments] = useState<Document[]>([
+  const [documents] = useState<Document[]>([
     { id: '1', name: 'product-manual.pdf', size: '2.4 MB', uploadedAt: '2024-01-15' },
     { id: '2', name: 'company-policies.docx', size: '156 KB', uploadedAt: '2024-01-14' },
   ])
@@ -78,11 +78,9 @@ export default function Knowledge() {
                 Drag and drop files here, or click to browse
               </p>
               <Input type="file" className="hidden" id="file-upload" multiple />
-              <label htmlFor="file-upload">
-                <Button variant="outline" className="cursor-pointer" asChild>
-                  <span>Browse Files</span>
-                </Button>
-              </label>
+              <Button variant="outline" className="cursor-pointer" onClick={() => document.getElementById('file-upload')?.click()}>
+                Browse Files
+              </Button>
               <p className="text-xs text-muted-foreground mt-2">
                 Supported: PDF, DOCX, TXT, MD, HTML
               </p>

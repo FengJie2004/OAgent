@@ -1,5 +1,6 @@
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom'
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query'
+import { Toaster } from './components/ui/toaster'
 import Layout from './components/layout/Layout'
 import Dashboard from './pages/Dashboard'
 import Chat from './pages/Chat'
@@ -29,6 +30,7 @@ function App() {
             <Route path="/knowledge" element={<Knowledge />} />
           </Routes>
         </Layout>
+        <Toaster />
       </Router>
     </QueryClientProvider>
   )
